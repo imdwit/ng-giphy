@@ -3,11 +3,13 @@ import angular from 'angular';
 import gifsModule from './gifs';
 import buttonGroupModule from './btnGroup';
 import addBtn from './addBtn';
+import servicesModule from './services';
 
 var app = angular.module('app', [
   'app.gifs',
   'app.buttonGroup',
   'app.addBtn',
+  'app.services',
 ]);
 
 var mainApp = {
@@ -26,60 +28,56 @@ var mainApp = {
       </gifs-list>
     </div>
   `,
-  controller: function($http) {
-    var key = 'dc6zaTOxFJmzC';
-    var giphy = 'http://api.giphy.com/v1/gifs/search';
-
-    this.$onInit = function() {
-      this.topics = [
-        'miata',
-        'rx7',
-        'gtr',
-        'corvette',
-        'mustang',
-      ];
-
-      this.gifs = [];
-    };
-
-    this.fetchGifs = function($event) {
-      console.log($event)
-      var topic = $event.topic;
-      $http({
-        method: 'GET',
-        url: giphy,
-        params: {
-          api_key: key,
-          q: topic,
-        },
-      })
-      .then(res => {
-        return res.data.data.map(gif => {
-          var original = gif.images.original.url;
-          var still = gif.images.original_still.url;
-          var rating = gif.rating;
-          var playing = false;
-          return { original, still, playing, rating };
-        });
-      })
-      .then(gifs => {
-        console.log('g', gifs);
-        this.gifs = gifs;
-      });
-    };
-
-    this.toggleGif = function($event) {
-      console.log($event);
-      var gif = $event.gif;
-      gif.playing = !gif.playing;
-    };
-
-
-    this.addBtn = function($event) {
-      console.log($event);
-      this.topics.push($event.topic);
-    }
-  }
+  controller: App
 };
+
+App.$inject = ['GifsService', '$http'];
+// injects our dependencies
+// needed for minification
+function App(GifsService, $http) {
+  // $ctrl in our template refers to `this`;
+  this.$onInit = function() {
+    this.topics = [
+      'miata',
+      'rx7',
+      'gtr',
+      'corvette',
+      'mustang',
+    ];
+
+    this.gifs = [];
+  };
+
+  this.fetchGifs = function($event) {
+    console.log($event)
+    var topic = $event.topic;
+    GifsService.fetch(topic)
+    .then(res => {
+      return res.data.data.map(gif => {
+        var original = gif.images.original.url;
+        var still = gif.images.original_still.url;
+        var rating = gif.rating;
+        var playing = false;
+        return { original, still, playing, rating };
+      });
+    })
+    .then(gifs => {
+      console.log('g', gifs);
+      this.gifs = gifs;
+    });
+  };
+
+  this.toggleGif = function($event) {
+    console.log($event);
+    var gif = $event.gif;
+    gif.playing = !gif.playing;
+  };
+
+
+  this.addBtn = function($event) {
+    console.log($event);
+    this.topics.push($event.topic);
+  }
+}
 
 app.component('mainApp', mainApp);
