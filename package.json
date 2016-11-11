@@ -1,0 +1,24 @@
+{
+  "name": "giphy-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run browser & npm run watch",
+    "browser": "browser-sync start --browser \"google chrome\" --server --ss public --files public/*",
+    "watch": "webpack -w"
+  },
+  "author": "Dwit",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.13",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "browser-sync": "^2.17.5",
+    "webpack": "^1.13.1"
+  }
+}
