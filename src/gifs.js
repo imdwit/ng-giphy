@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 var gifsList = {
   bindings: {
     gifs: '<',

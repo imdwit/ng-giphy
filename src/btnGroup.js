@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 var buttonGroup = {
   bindings: {
     topics: '<',
