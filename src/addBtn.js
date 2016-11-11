@@ -12,9 +12,9 @@ var addBtn = {
     };
 
     this._handleKeyUp = function(e) {
-      console.log(e);
       if (e.which === 13) {
         this.handleKeyUp({$event: {topic: this.topic}});
+        this.topic = '';
       }
     }
   }
