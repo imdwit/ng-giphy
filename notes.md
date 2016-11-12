@@ -29,9 +29,17 @@
 
 
 #### modules
-  set (create) `angular.module('app', []);`
-  set (create), require other modules`angular.module('app', ['app.somemodule1', 'app.somemodule2']);`
-  get module `angular.module('app');`
+  set (create):
+
+  `angular.module('app', []);`
+
+  set (create), require other modules:
+
+  `angular.module('app', ['app.somemodule1', 'app.somemodule2']);`
+
+  get module:
+
+  `angular.module('app');`
 
 
 
