@@ -15,6 +15,9 @@ var app = angular.module('app', [
 var mainApp = {
   template: `
     <div>
+      <p>Filter by rating: </p>
+      <input ng-model="$ctrl.filterBy" />
+      <p>add a topic: </p>
       <add-btn
         handle-key-up="$ctrl.addBtn($event)">
       </add-btn>
@@ -24,7 +27,9 @@ var mainApp = {
       </button-group>
       <gifs-list
         gifs="$ctrl.gifs"
-        handle-click="$ctrl.toggleGif($event)">
+        handle-click="$ctrl.toggleGif($event)"
+        filter-by="$ctrl.filterBy"
+        >
       </gifs-list>
     </div>
   `,
@@ -46,6 +51,8 @@ function App(GifsService, $http) {
     ];
 
     this.gifs = [];
+
+    this.filterBy = '';
   };
 
   this.fetchGifs = function($event) {
