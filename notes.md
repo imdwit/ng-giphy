@@ -46,6 +46,10 @@
     + onetime bindings
   * controllers ($ctrl)
   * lifecycle hooks
+    + `$onInit` is *like* a "constructor"
+      +  Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
+      This is a good place to put initialization code for your controller.
+    + `$onChanges` is called, on the child when 1 way bindings are updated, in a parent child relationship
   * camelCase component name becomes kebab-case in markup
 
   ```javascript
@@ -54,7 +58,7 @@
         someValue: '<',
       },
       controller: function() {
-        this.$oniInit = function() {
+        this.$onInit = function() {
           this.otherValue = 'qux';
           this.count = 0;
         };
