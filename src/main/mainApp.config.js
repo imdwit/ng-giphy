@@ -1,4 +1,4 @@
-export default function routeConfig($stateProvider) {
+export default function routeConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('app', {
       url: '/',
@@ -23,4 +23,5 @@ export default function routeConfig($stateProvider) {
         }
       }
     })
+    $urlRouterProvider.otherwise('/');
 }
