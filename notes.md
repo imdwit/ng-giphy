@@ -41,10 +41,14 @@
       + '<' data
       + '@' text
       + '&' callback | $event "emitter"
+        + [todds tutorial](https://toddmotto.com/angular-1-5-lifecycle-hooks)
   * templates
     + interpolation
     + onetime bindings
+      + "render once", more memory efficient
+      + not watching/listening for changes, cuz there are none to expect. frees up memory
   * controllers ($ctrl)
+    * controller as ??
   * lifecycle hooks
     + `$onInit` is *like* a "constructor"
       +  Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
@@ -215,4 +219,4 @@
 
 
 
-https://toddmotto.com/modern-angular-interview-questions
+## [todds interview questions](https://toddmotto.com/modern-angular-interview-questions)
