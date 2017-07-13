@@ -1,4 +1,5 @@
 import 'angular-ui-router';
+
 import gifsModule from './gifs';
 import buttonGroupModule from './btnGroup';
 import addBtnModule from './addBtn';

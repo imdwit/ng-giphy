@@ -14,7 +14,8 @@ var GifsService = function($http) {
           q: topic,
         },
       });
-    }
+    },
+    cache: [],
   }
 };
 
